@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/tkhara/CLionProjects/ds_Assignment4/bst.c
+stdlib.h
+-
+stdio.h
+-
+assert.h
+-
+string.h
+-
+bst.h
+/Users/tkhara/CLionProjects/ds_Assignment4/bst.h
+structs.h
+/Users/tkhara/CLionProjects/ds_Assignment4/structs.h
+stdio.h
+-
+
+/Users/tkhara/CLionProjects/ds_Assignment4/bst.h
+
+/Users/tkhara/CLionProjects/ds_Assignment4/structs.h
+
