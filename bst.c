@@ -250,7 +250,11 @@ int containsBSTree(struct BSTree *tree, TYPE val)
 TYPE _leftMost(struct Node *cur)
 {
     /*write this*/
-    return NULL;
+
+    while(cur && cur->left != NULL)
+        cur = cur->left;
+
+    return cur->val;
 }
 
 
@@ -268,8 +272,18 @@ Note:  If you do this iteratively, the above hint does not apply.
 /*----------------------------------------------------------------------------*/
 struct Node *_removeLeftMost(struct Node *cur)
 {
-    /*write this*/
-    return NULL;
+    if(cur->left == NULL)
+    {
+        struct Node* temp = cur->right;
+        free(cur);
+        return temp;
+    }
+    else if(cur->left != NULL)
+    {
+        cur->left = _removeLeftMost(cur->left);
+        return cur;
+    }
+
 }
 /*
  recursive helper function to remove a node from the tree
@@ -282,8 +296,41 @@ struct Node *_removeLeftMost(struct Node *cur)
 /*----------------------------------------------------------------------------*/
 struct Node *_removeNode(struct Node *cur, TYPE val)
 {
-    /*write this*/
-    return NULL;
+    // if start.value is the value we seek
+    // start value is cur->val
+    if(compare(val, cur->val) == 0)
+    {
+        // Decrease the value of data size
+
+        // If right child is null
+        if(cur->right == NULL)
+        {
+            // return left child
+            return cur->left;
+        }
+        // Otherwise
+        else
+        {
+            //replace value of node with leftmost child of right child
+            cur->val = _leftMost(cur->right);
+
+            // set right child to be removeLeftmost(right child)
+            cur->right = _removeLeftMost(cur->right);
+        }
+    }
+    // otherwise if testValue is smaller than start.value
+    else if(compare(val, cur->val) == -1)
+    {
+        // set left child to remove (left child, testValue)
+        cur->left = _removeNode(cur->left, val);
+    }
+    else
+    {
+        // set right child to remove (right child, testValue)
+        cur->right = _removeNode(cur->right, val);
+    }
+
+    return cur;
 
 }
 /*
@@ -583,13 +630,13 @@ points */
   	testContainsBSTree();
 	
 	printf("\n");
-       //testLeftMost();
+       testLeftMost();
 	
 	printf("\n");
-    //testRemoveLeftMost();
+    testRemoveLeftMost();
 	
 	printf("\n");
-    //testRemoveNode();
+    testRemoveNode();
     
 	
 	return 0;

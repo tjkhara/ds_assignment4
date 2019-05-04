@@ -27,7 +27,7 @@ int compare(TYPE left, TYPE right)
 {
     /*FIXME: write this*/
     struct data* l = (struct data *) left;
-    struct data* r = (struct data *) left;
+    struct data* r = (struct data *) right;
 
     if(l->number < r->number)
     {
